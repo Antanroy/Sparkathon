@@ -23,7 +23,8 @@ const {
   updateProduct,
   uploadNutrition,
   updateInventory,
-  createInventory
+  createInventory,
+  bulkUpdateInventory
 } = require('../controllers/adminController');
 
 router.post('/login', adminLogin);
@@ -32,6 +33,7 @@ router.post('/product', createProduct);
 router.put('/product/:id', updateProduct);
 router.post('/nutrition', uploadNutrition);
 router.post('/inventory', createInventory);
+router.put('/inventory', bulkUpdateInventory);
 router.put('/inventory/:id', updateInventory);
 
 module.exports = router;
