@@ -64,3 +64,20 @@ exports.createInventory = async (req, res) => {
   const inventory = await Inventory.create(req.body);
   res.json(inventory);
 };
+
+exports.bulkUpdateInventory = async (req, res) => {
+  try {
+    const updates = req.body; 
+
+    const results = await Promise.all(
+      updates.map(update =>
+        Inventory.findByIdAndUpdate(update._id, update, { new: true })
+      )
+    );
+
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Bulk update failed', error: err.message });
+  }
+};
+
